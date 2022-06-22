@@ -5,6 +5,7 @@ const BlogController= require("../controllers/blogController")
 
 router.post('/authors',AuthorController.createAuthor)
 router.post('/blogs',BlogController.createBlog)
+router.put("blogs/:blogId",BlogController.updateBlog)
 
 
 
