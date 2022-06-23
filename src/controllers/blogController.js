@@ -5,7 +5,11 @@ const createBlog = async function(req,res){
   try{
     let data = req.body
     const auth = data.authorId
+<<<<<<< HEAD
    
+=======
+    
+>>>>>>> de0063743d9ae1a66be1070edacd468f8a85aeb5
     if(!auth){
         res.status(400).send({status:false, msg:"author is required"})
     }
@@ -146,9 +150,10 @@ const deleteblog1 = async function(req,res){
       //console.log(authorId)
       let tags=req.query.tags
       let subCategory=req.query.subCategory
-      // let updatedblog = await BlogModel.find({$or:[{authorId:authorId},{category:category},{tags:tags},{subCategory:subCategory}]}).updateMany({$set:{isDeleted:true}},{new:true});
-      let updatedblog = await BlogModel.findOneAndUpdate({$or:[{authorId:authorId},{category:category},{tags:tags},{subCategory:subCategory}]},
-       {$set:{isDeleted:true,deletedAt:new Date(Date.now())}},{new:true});
+      let updatedblog = await BlogModel.find({$or:[{authorId:authorId},{category:category},{tags:tags},{subCategory:subCategory}]}).updateMany({$set:{isDeleted:true}},{new:true});
+          updatedblog.save()
+      // let updatedblog = await BlogModel.findOneAndUpdate({$or:[{authorId:authorId},{category:category},{tags:tags},{subCategory:subCategory}]},
+      //  {$set:{isDeleted:true,deletedAt:new Date(Date.now())}},{new:true});
 
       console.log(updatedblog)
       res.status(200).send({ status:true, data: updatedblog });
@@ -158,6 +163,7 @@ const deleteblog1 = async function(req,res){
         res.status(500).send({ msg: "Error", error: err.message })
     }
 }
+
 
 module.exports.createBlog =  createBlog
 module.exports.deleteblog1 = deleteblog1
