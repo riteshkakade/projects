@@ -40,8 +40,8 @@ const getblogs = async function (req, res) {
     console.log(query)
     const getblog = await BlogModel.find({ $and: [{ isPublished: true, isDeleted: false }, query] })
 
-    if (getblog.length === 0) {
-      return res.status(404).send({ status: false, msg: "no author found" })
+   if (getblog.length === 0) {
+     return res.status(404).send({ status: false, msg: "no author found" })
     }
     res.status(200).send({ status: true, data: getblog })
 
